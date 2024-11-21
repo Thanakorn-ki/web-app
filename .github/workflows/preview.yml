@@ -17,7 +17,7 @@ concurrency: preview-${{ github.ref }}
 
 jobs:
   deploy-preview:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -44,13 +44,13 @@ jobs:
           echo "Contents of dist directory:"
           ls -la dist/
 
-      - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1
-        with:
-          source-dir: ./dist
-          preview-branch: gh-pages
-          umbrella-dir: pr-preview
-          action: auto
+      # - name: Deploy preview
+      #   uses: rossjrw/pr-preview-action@v1
+      #   with:
+      #     source-dir: ./dist
+      #     preview-branch: gh-pages
+      #     umbrella-dir: pr-preview
+      #     action: auto
 
       - name: Deploy preview by peaceiris
         uses: peaceiris/actions-gh-pages@v4
