@@ -1,5 +1,10 @@
 name: Deploy PR previews
 
+permissions:
+  contents: write
+  pages: write
+  pull-requests: write
+
 on:
   pull_request:
     types:
@@ -30,6 +35,7 @@ jobs:
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ./dist/
+          source-dir: dist
           preview-branch: gh-pages
           umbrella-dir: pr-preview
+          action: auto
