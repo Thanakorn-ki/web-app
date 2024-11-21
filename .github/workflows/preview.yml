@@ -20,10 +20,12 @@ jobs:
       - name: Install and Build
         if: github.event.action != 'closed' # You might want to skip the build if the PR has been closed
         run: |
-          npm install
+          npm ci
           npm run build
 
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./dist/
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
