@@ -32,10 +32,17 @@ jobs:
         env:
           # This ensures assets are loaded correctly in the preview
           VITE_BASE_URL: /pr-preview/pr-${{ github.event.number }}
+
+      - name: Debug build output
+        if: github.event.action != 'closed'
+        run: |
+          echo "Contents of dist directory:"
+          ls -la dist/
+
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: dist
+          source-dir: ./dist
           preview-branch: gh-pages
           umbrella-dir: pr-preview
           action: auto
